@@ -1,0 +1,19 @@
+{
+  "name": "gatsbyjs-poc",
+  "version": "0.0.1",
+  "repository": "git@github.com:wunderio/gatsbyjs-poc.git",
+  "author": "wunder.io",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "gatsby": "next",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0"
+  }
+}
