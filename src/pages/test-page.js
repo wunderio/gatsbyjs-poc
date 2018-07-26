@@ -1,10 +1,10 @@
 import React from 'react'
 import Layout from '../components/Layout'
 
-export default class HomePage extends React.PureComponent {
+export default class NewPage extends React.PureComponent {
   render() {
     return (
-      <Layout title="Homepage" pathname={this.props.location.pathname}>
+      <Layout title="NewPage" pathname={this.props.location.pathname}>
         <h2>I'm the content on the front page!</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
