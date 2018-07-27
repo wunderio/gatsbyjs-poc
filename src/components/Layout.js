@@ -13,6 +13,7 @@ export default class Layout extends React.Component {
   static propTypes = {
     pathname: PropTypes.string.isRequired,
     title: PropTypes.string,
+    theme: PropTypes.string,
     children: PropTypes.node.isRequired,
   }
 
@@ -48,6 +49,7 @@ export default class Layout extends React.Component {
                 <Header
                   title={this.props.title}
                   pathname={this.props.pathname}
+                  colourScheme={this.props.colourScheme}
                 />
                 <Main children={this.props.children} />
                 <Footer />
