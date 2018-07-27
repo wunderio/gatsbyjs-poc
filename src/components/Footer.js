@@ -67,7 +67,6 @@ const LegalListItem = styled.li`
 
 export default class Footer extends React.Component {
   render() {
-    const baseUrl = '//localhost:8000'
     return (
       <StyledFooter>
         {/* Social links are #todo */}
@@ -77,7 +76,7 @@ export default class Footer extends React.Component {
           <LegalList>
             {Object.keys(legalLinks).map(key => (
               <LegalListItem key={key}>
-                <Link to={`${baseUrl}/${legalLinks[key].link}`}>
+                <Link to={`${legalLinks[key].link}`}>
                   {legalLinks[key].text}
                 </Link>
               </LegalListItem>
