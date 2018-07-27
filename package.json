@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "clean": "rm -r .cache public"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.5.1",
