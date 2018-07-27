@@ -30,4 +30,8 @@ injectGlobal`
     font-family: Helvetica, sans-serif;
     height: 100%;
   }
+
+  .lang {
+    max-width: 200px;
+  }
 `
