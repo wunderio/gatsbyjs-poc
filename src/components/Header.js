@@ -7,7 +7,7 @@ const HeaderWrapper = styled.header`
   /* min-height: 64rem; */
   background-color: ${props =>
     props.theme.colours[
-      props.colourScheme === 'alt' ? 'robinsEggBlue' : 'navy'
+      props.colourScheme === 'standard' ? 'navy' : 'robinsEggBlue'
     ]};
   color: white;
 `
@@ -37,7 +37,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <HeaderWrapper colourScheme={this.props.colourScheme}>
-        <Navbar />
+        <Navbar colourScheme={this.props.colourScheme} />
         <Hero>
           <Title>{this.props.title}</Title>
         </Hero>

@@ -7,7 +7,7 @@ export default class HomePage extends React.PureComponent {
       <Layout
         title="Homepage"
         pathname={this.props.location.pathname}
-        colourScheme="alt"
+        colourScheme="standard"
       >
         <h2>I'm the content on the front page!</h2>
         <p>
