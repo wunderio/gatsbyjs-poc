@@ -1,26 +1,47 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Navbar from './Navbar'
 
-const Header = styled.header`
-  background-color: #2274a5;
+const HeaderWrapper = styled.header`
+  /* min-height: 64rem; */
+  background-color: ${props =>
+    props.theme.colours[
+      props.colourScheme === 'standard' ? 'navy' : 'robinsEggBlue'
+    ]};
+  color: white;
+`
+
+const Hero = styled.div`
   display: flex;
   flex-direction: column;
-  align-content: center;
-  text-align: center;
-  padding-bottom: 5rem;
+  align-items: center;
+  /* padding: 5rem 0; */
 `
 
 const Title = styled.h1`
-  color: #ffbf00;
+  font-size: 4rem;
 `
 
-const Subtitle = styled.p`
-  color: #fff;
-`
+export default class Header extends React.Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    heroText: PropTypes.string,
+    colourScheme: PropTypes.string,
+  }
 
-export default props => (
-  <Header>
-    <Title>{props.title || 'Some Default Title'}</Title>
-    <Subtitle>Psst! I'm the Header component!</Subtitle>
-  </Header>
-)
+  componentDidMount = () => {
+    console.log(window.innerWidth)
+  }
+
+  render() {
+    return (
+      <HeaderWrapper colourScheme={this.props.colourScheme}>
+        <Navbar colourScheme={this.props.colourScheme} />
+        <Hero>
+          <Title>{this.props.title}</Title>
+        </Hero>
+      </HeaderWrapper>
+    )
+  }
+}
