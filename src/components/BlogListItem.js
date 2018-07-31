@@ -62,7 +62,17 @@ const Title = styled.h2`
 
 export default class BlogPost extends React.Component {
   static propTypes = {
-    post: PropTypes.object.isRequired,
+    post: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+      }),
+      fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+      }),
+      img: PropTypes.string, // Doesn't exist yet; placeholder until JSON api is ready
+    }),
   }
 
   render() {
