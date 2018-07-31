@@ -25,8 +25,8 @@ injectGlobal`
   }
   /* End of normalization stuff, actual theming below */
 
-  @import url('https://fonts.googleapis.com/css?family=Raleway');
-  @import url('https://fonts.googleapis.com/css?family=Hind');
+  @import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
+  @import url('https://fonts.googleapis.com/css?family=Hind:300,400');
 
   body {
     font-family: "Hind", Helvetica, Arial, sans-serif;
@@ -35,28 +35,6 @@ injectGlobal`
 
   h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway", Helvetica, Arial, sans-serif;
-  }
-
-  h1 {
-    font-size: 4.5rem;
-  }
-  h2 {
-    font-size: 4rem;
-  }
-  h3 {
-    font-size: 2.5rem;
-  }
-  h4 {
-    font-size: 2.5rem;
-  }
-  h5 {
-    font-size: 2.2rem;
-  }
-  h6 {
-    font-size: 2rem;
-  }
-  p, ol, ul {
-    margin: 1.18 0;
   }
 `
 
