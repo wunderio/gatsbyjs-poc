@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import defaultImg from '../assets/wundercon.jpg'
+import defaultAvatar from '../assets/default-avatar.png'
 
 const Post = styled.li`
   margin: 5.5rem 0;
@@ -60,6 +61,26 @@ const Title = styled.h2`
   color: ${props => props.theme.colours.navy};
 `
 
+const AuthorInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 3.5rem;
+`
+
+const AuthorAvatar = styled.img`
+  width: 7rem;
+  height: 7rem;
+  margin-right: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid navy;
+`
+
+const AuthorText = styled.span`
+  color: ${props => props.theme.colours.navy};
+  font-weight: 300;
+`
+
 export default class BlogPost extends React.Component {
   static propTypes = {
     post: PropTypes.shape({
@@ -71,7 +92,9 @@ export default class BlogPost extends React.Component {
       fields: PropTypes.shape({
         slug: PropTypes.string.isRequired,
       }),
-      img: PropTypes.string, // Doesn't exist yet; placeholder until JSON api is ready
+      // The below don't exist yet; placeholder until JSON api is ready
+      img: PropTypes.string,
+      authorPhoto: PropTypes.string,
     }),
   }
 
@@ -85,9 +108,10 @@ export default class BlogPost extends React.Component {
           <PostInfo>
             <Date>{post.frontmatter.date}</Date>
             <Title>{post.frontmatter.title}</Title>
-            {/* <AuthorInfo> */}
-            {/* <Avatar image={} /> */}
-            {/* </AuthorInfo> */}
+            <AuthorInfo>
+              <AuthorAvatar src={post.authorPhoto || defaultAvatar} />
+              <AuthorText>By {post.frontmatter.author}</AuthorText>
+            </AuthorInfo>
           </PostInfo>
         </WrappingLink>
       </Post>
