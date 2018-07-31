@@ -72,7 +72,7 @@ const NavLinks = styled.ul`
 
 const LanguageBar = styled.div``
 
-export default class Navbar extends React.Component {
+export default class NavbarMobile extends React.Component {
   state = {
     isOpen: false,
   }
