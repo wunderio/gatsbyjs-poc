@@ -2,15 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Main = styled.main`
+  max-width: ${props => props.theme.layout.maxBodyWidth};
   padding: 2rem;
-  max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
-
-  h2 {
-    padding: 2rem;
-  }
+  text-align: justify;
 `
 
 export default props => <Main>{props.children}</Main>
