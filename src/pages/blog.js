@@ -1,36 +1,22 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
+import BlogListItem from '../components/BlogListItem'
 
-const Posts = styled.ul`
+const BlogList = styled.ul`
   list-style-type: none;
+  padding: 0;
 `
-
-const Post = styled.li`
-  border: 1px solid black;
-  margin-bottom: 2rem;
-  padding: 2rem;
-`
-
-const Title = styled.h3``
-const Date = styled.p``
-const Excerpt = styled.p``
 
 export default ({ data }) => {
   return (
     <Layout pathname="/blog" title="Blog" colourScheme="standard">
-      <Posts>
+      <BlogList>
         {data.allMarkdownRemark.edges.map(({ post }) => (
-          <Post key={post.id}>
-            <Link to={post.fields.slug}>
-              <Title>{post.frontmatter.title}</Title>
-            </Link>
-            <Date>{post.frontmatter.date}</Date>
-            <Excerpt>{post.excerpt}</Excerpt>
-          </Post>
+          <BlogListItem key={post.id} post={post} />
         ))}
-      </Posts>
+      </BlogList>
     </Layout>
   )
 }
@@ -47,7 +33,8 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "YYYY-MM-DD")
+            author
           }
           excerpt
           fields {
