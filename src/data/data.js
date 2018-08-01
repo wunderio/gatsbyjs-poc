@@ -12,7 +12,7 @@ const navLinks = {
     link: '/clients',
   },
   about: {
-    text: 'About Wunder',
+    text: 'About',
     link: '/about-wunder',
   },
   blog: {

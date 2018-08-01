@@ -35,7 +35,7 @@ const NavLinks = styled.ul`
     font-family: 'Raleway', Helvetica, Arial, sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
-    padding: 17px 1rem;
+    padding: 1.7rem 2.25rem;
     height: 4.2rem;
     line-height: 1;
     letter-spacing: 0.36rem;
