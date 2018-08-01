@@ -5,7 +5,6 @@ import NavbarDesktop from './NavbarDesktop'
 import NavbarMobile from './NavbarMobile'
 
 const HeaderWrapper = styled.header`
-  /* min-height: 64rem; */
   background-color: ${({ theme, colourScheme }) =>
     theme.colours[colourScheme === 'standard' ? 'navy' : 'robinsEggBlue']};
   color: white;
@@ -15,12 +14,13 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 5rem 0; */
 `
 
 const Title = styled.h1`
   font-size: 4rem;
 `
+
+const IntroText = styled.p``
 
 class Header extends React.Component {
   state = {
@@ -28,8 +28,8 @@ class Header extends React.Component {
   }
 
   static propTypes = {
-    title: PropTypes.string.isRequired,
-    heroText: PropTypes.string,
+    title: PropTypes.string,
+    introText: PropTypes.string,
     colourScheme: PropTypes.string,
   }
 
@@ -48,7 +48,7 @@ class Header extends React.Component {
 
   render() {
     const { width } = this.state
-    const { theme, colourScheme, title } = this.props
+    const { theme, colourScheme, title, introText } = this.props
 
     return (
       <HeaderWrapper colourScheme={colourScheme}>
@@ -57,9 +57,12 @@ class Header extends React.Component {
         ) : (
           <NavbarDesktop colourScheme={colourScheme} />
         )}
-        <Hero>
-          <Title>{title}</Title>
-        </Hero>
+        {title && (
+          <Hero>
+            <Title>{title}</Title>
+            <IntroText>{introText}</IntroText>
+          </Hero>
+        )}
       </HeaderWrapper>
     )
   }
