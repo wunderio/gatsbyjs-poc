@@ -34,6 +34,7 @@ const Content = styled.article`
     line-height: 1.3;
     letter-spacing: 0.2rem;
     text-align: start;
+    font-weight: 800;
   }
 
   h2 {
