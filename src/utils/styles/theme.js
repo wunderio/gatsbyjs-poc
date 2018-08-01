@@ -25,8 +25,8 @@ injectGlobal`
   }
   /* End of normalization stuff, actual theming below */
 
-  @import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
-  @import url('https://fonts.googleapis.com/css?family=Hind:300,400');
+  @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,800');
+  @import url('https://fonts.googleapis.com/css?family=Hind:300,400,500');
 
   body {
     font-family: "Hind", Helvetica, Arial, sans-serif;
@@ -35,6 +35,7 @@ injectGlobal`
 
   h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway", Helvetica, Arial, sans-serif;
+    line-height: 1.04;
   }
 `
 
