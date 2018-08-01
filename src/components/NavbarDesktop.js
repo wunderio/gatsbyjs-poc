@@ -12,9 +12,11 @@ const NavWrapper = styled.nav`
   align-items: center;
 `
 
+const LogoLink = styled(Link)``
+
 const WunderLogo = styled.img`
   width: 15rem;
-  margin-top: -1.8rem;
+  margin-top: -1.25rem;
 `
 
 const NavLinks = styled.ul`
@@ -50,7 +52,9 @@ export default class NavbarDesktop extends React.Component {
   render() {
     return (
       <NavWrapper>
-        <WunderLogo src={logo} />
+        <LogoLink to="/" title="Home">
+          <WunderLogo src={logo} />
+        </LogoLink>
         <NavLinks>
           {Object.keys(navLinks).map(key => (
             <li key={key}>
