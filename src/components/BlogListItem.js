@@ -13,7 +13,7 @@ const Post = styled.li`
     box-shadow: 0 1px 0.5em rgba(0, 0, 0, 0.2);
 
     h2 {
-      color: ${props => props.theme.colours.cyan};
+      color: ${({ theme }) => theme.colours.cyan};
     }
   }
 `
@@ -22,19 +22,19 @@ const WrappingLink = styled(Link)`
   text-decoration: none;
   display: block;
 
-  @media ${props => props.theme.breakpoints.small} {
+  @media ${({ theme }) => theme.breakpoints.small} {
     display: flex;
   }
 `
 
 const PostImage = styled.div`
-  background-image: url(${props => props.img});
+  background-image: url(${({ img }) => img});
   background-size: cover;
   background-position: 50%;
   width: 100%;
   height: 30rem;
 
-  @media ${props => props.theme.breakpoints.small} {
+  @media ${({ theme }) => theme.breakpoints.small} {
     width: 50%;
   }
 `
@@ -43,7 +43,7 @@ const PostInfo = styled.div`
   padding: 2.5rem;
   text-align: left;
 
-  @media ${props => props.theme.breakpoints.small} {
+  @media ${({ theme }) => theme.breakpoints.small} {
     width: 50%;
   }
 `
@@ -51,14 +51,14 @@ const PostInfo = styled.div`
 const Date = styled.p`
   font-size: 1.6rem;
   font-weight: 300;
-  color: ${props => props.theme.colours.textGray};
+  color: ${({ theme }) => theme.colours.textGray};
 `
 
 const Title = styled.h2`
   font-size: 2.2rem;
   margin: 0;
   padding: 0;
-  color: ${props => props.theme.colours.navy};
+  color: ${({ theme }) => theme.colours.navy};
 `
 
 const AuthorInfo = styled.div`
@@ -77,7 +77,7 @@ const AuthorAvatar = styled.img`
 `
 
 const AuthorText = styled.span`
-  color: ${props => props.theme.colours.navy};
+  color: ${({ theme }) => theme.colours.navy};
   font-weight: 300;
 `
 

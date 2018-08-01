@@ -30,33 +30,37 @@ export default class Layout extends React.Component {
             }
           }
         `}
-        render={data => (
-          <>
-            <Helmet>
-              <title>
-                {this.props.title
-                  ? `${this.props.title} - ${data.site.siteMetadata.title}`
-                  : `${data.site.siteMetadata.title}`}
-              </title>
-              <meta charSet="utf-8" />
-              <meta
-                name="description"
-                content={data.site.siteMetadata.description}
-              />
-            </Helmet>
-            <ThemeProvider theme={theme}>
-              <>
-                <Header
-                  title={this.props.title}
-                  pathname={this.props.pathname}
-                  colourScheme={this.props.colourScheme}
+        render={data => {
+          const { title, pathname, colourScheme, children } = this.props
+
+          return (
+            <>
+              <Helmet>
+                <title>
+                  {title
+                    ? `${title} - ${data.site.siteMetadata.title}`
+                    : `${data.site.siteMetadata.title}`}
+                </title>
+                <meta charSet="utf-8" />
+                <meta
+                  name="description"
+                  content={data.site.siteMetadata.description}
                 />
-                <Main children={this.props.children} />
-                <Footer />
-              </>
-            </ThemeProvider>
-          </>
-        )}
+              </Helmet>
+              <ThemeProvider theme={theme}>
+                <>
+                  <Header
+                    title={title}
+                    pathname={pathname}
+                    colourScheme={colourScheme}
+                  />
+                  <Main children={children} />
+                  <Footer />
+                </>
+              </ThemeProvider>
+            </>
+          )
+        }}
       />
     )
   }

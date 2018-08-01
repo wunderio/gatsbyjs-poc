@@ -8,17 +8,17 @@ import logo from '../assets/carrot-with-text.svg'
 const StyledFooter = styled.footer`
   margin: 0;
   padding: 0;
-  background-color: ${props => props.theme.colours.navy};
+  background-color: ${({ theme }) => theme.colours.navy};
 `
 
 const SocialSection = styled.section`
-  background-color: ${props => props.theme.colours.darkHotPink};
+  background-color: ${({ theme }) => theme.colours.darkHotPink};
   height: 7rem;
 `
 
 const LegalSection = styled.section`
-  background-color: ${props => props.theme.colours.navy};
-  max-width: ${props => props.theme.layout.maxBodyWidth};
+  background-color: ${({ theme }) => theme.colours.navy};
+  max-width: ${({ theme }) => theme.layout.maxBodyWidth};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +26,7 @@ const LegalSection = styled.section`
   padding: 5rem 0 4rem;
   margin: 0 auto;
 
-  @media ${props => props.theme.breakpoints.medium} {
+  @media ${({ theme }) => theme.breakpoints.medium} {
     flex-direction: row;
     justify-content: space-around;
     padding: 8rem 0;
@@ -40,7 +40,7 @@ const LegalList = styled.ul`
 `
 
 const LegalListItem = styled.li`
-  @media ${props => props.theme.breakpoints.small} {
+  @media ${({ theme }) => theme.breakpoints.small} {
     display: inline-flex;
     padding-left: 1.8rem;
     padding-right: 1.8rem;

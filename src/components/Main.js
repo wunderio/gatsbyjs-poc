@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Main = styled.main`
-  max-width: ${props => props.theme.layout.maxBodyWidth};
+  max-width: ${({ theme }) => theme.layout.maxBodyWidth};
   padding: 2rem;
   margin-left: auto;
   margin-right: auto;

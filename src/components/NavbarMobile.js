@@ -37,7 +37,7 @@ const CarrotImg = styled.img`
 const ToggledOpenView = styled.nav`
   position: absolute;
   width: 100%;
-  background-color: ${props => props.theme.colours[props.background]};
+  background-color: ${({ theme, background }) => theme.colours[background]};
 `
 
 const NavLinks = styled.ul`
@@ -65,7 +65,7 @@ const NavLinks = styled.ul`
 
     :hover {
       background-color: white;
-      color: ${props => props.theme.colours.cyan};
+      color: ${({ theme }) => theme.colours.cyan};
     }
   }
 `

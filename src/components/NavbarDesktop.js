@@ -41,7 +41,7 @@ const NavLinks = styled.ul`
 
     :hover {
       background-color: white;
-      color: ${props => props.theme.colours.cyan};
+      color: ${({ theme }) => theme.colours.cyan};
     }
   }
 `

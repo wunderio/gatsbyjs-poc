@@ -6,10 +6,8 @@ import NavbarMobile from './NavbarMobile'
 
 const HeaderWrapper = styled.header`
   /* min-height: 64rem; */
-  background-color: ${props =>
-    props.theme.colours[
-      props.colourScheme === 'standard' ? 'navy' : 'robinsEggBlue'
-    ]};
+  background-color: ${({ theme, colourScheme }) =>
+    theme.colours[colourScheme === 'standard' ? 'navy' : 'robinsEggBlue']};
   color: white;
 `
 
@@ -50,16 +48,17 @@ export default class Header extends React.Component {
 
   render() {
     const { width } = this.state
+    const { colourScheme, title } = this.props
 
     return (
-      <HeaderWrapper colourScheme={this.props.colourScheme}>
+      <HeaderWrapper colourScheme={colourScheme}>
         {width > 1000 ? (
-          <NavbarDesktop colourScheme={this.props.colourScheme} />
+          <NavbarDesktop colourScheme={colourScheme} />
         ) : (
-          <NavbarMobile colourScheme={this.props.colourScheme} />
+          <NavbarMobile colourScheme={colourScheme} />
         )}
         <Hero>
-          <Title>{this.props.title}</Title>
+          <Title>{title}</Title>
         </Hero>
       </HeaderWrapper>
     )
