@@ -38,16 +38,27 @@ injectGlobal`
   }
 `
 
+const sizes = {
+  small: 768,
+  medium: 1024,
+  large: 1200,
+}
+
 /**
- * These are analogous to global variables and mixins in sass.
- * They're made available throughout the app thanks to the <ThemeProvider /> component.
- * This object can be accessed in any component by calling `props.theme`.
+ * The global 'theme' object.
+ * Its values are analogous to global variables and mixins in sass.
+ * This object can be accessed in any styled component by calling `props.theme`,
+ * thanks to the <ThemeProvider /> component (which implements React's 'Context' API).
+ * To use the theme in any other component (e.g. directly in render()), use the 'withTheme' method.
  */
-const theme = {
+export default {
   breakpoints: {
-    small: `all and (min-width: ${768 / 16}em)`, // 768px at default font-size of 16px
-    medium: `all and (min-width: ${1024 / 16}em)`, // 1024px
-    large: `all and (min-width: ${1200 / 16}em)`, // 1200px
+    pxValues: {
+      ...sizes,
+    },
+    small: `all and (min-width: ${sizes.small / 16}em)`, // 768px at default font-size of 16px
+    medium: `all and (min-width: ${sizes.medium / 16}em)`,
+    large: `all and (min-width: ${sizes.large / 16}em)`,
   },
   colours: {
     grey: '#eff3f5',
@@ -85,5 +96,3 @@ const theme = {
     baseFontFamily: '"Hind", Helvetica, Arial, sans-serif',
   },
 }
-
-export default theme

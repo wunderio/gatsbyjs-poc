@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 import NavbarDesktop from './NavbarDesktop'
 import NavbarMobile from './NavbarMobile'
 
@@ -22,7 +22,7 @@ const Title = styled.h1`
   font-size: 4rem;
 `
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   state = {
     width: 0,
   }
@@ -48,14 +48,14 @@ export default class Header extends React.Component {
 
   render() {
     const { width } = this.state
-    const { colourScheme, title } = this.props
+    const { theme, colourScheme, title } = this.props
 
     return (
       <HeaderWrapper colourScheme={colourScheme}>
-        {width > 1000 ? (
-          <NavbarDesktop colourScheme={colourScheme} />
-        ) : (
+        {width < theme.breakpoints.pxValues.medium ? (
           <NavbarMobile colourScheme={colourScheme} />
+        ) : (
+          <NavbarDesktop colourScheme={colourScheme} />
         )}
         <Hero>
           <Title>{title}</Title>
@@ -64,3 +64,5 @@ export default class Header extends React.Component {
     )
   }
 }
+
+export default withTheme(Header)
