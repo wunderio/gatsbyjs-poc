@@ -11,10 +11,6 @@ const Post = styled.li`
 
   :hover {
     box-shadow: 0 1px 0.5em rgba(0, 0, 0, 0.2);
-
-    h2 {
-      color: ${({ theme }) => theme.colours.cyan};
-    }
   }
 `
 
@@ -59,6 +55,10 @@ const Title = styled.h2`
   margin: 0;
   padding: 0;
   color: ${({ theme }) => theme.colours.navy};
+
+  ${WrappingLink}:hover & {
+    color: ${({ theme }) => theme.colours.cyan};
+  }
 `
 
 const AuthorInfo = styled.div`
