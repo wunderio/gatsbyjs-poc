@@ -18,6 +18,8 @@ const Hero = styled.div`
 
 const Title = styled.h1`
   font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: 0.35rem;
 `
 
 const IntroText = styled.p``
