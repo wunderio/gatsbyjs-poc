@@ -11,7 +11,6 @@ import Footer from './Footer'
 
 export default class Layout extends React.Component {
   static propTypes = {
-    pathname: PropTypes.string.isRequired,
     title: PropTypes.string,
     theme: PropTypes.string,
     children: PropTypes.node.isRequired,
@@ -31,7 +30,7 @@ export default class Layout extends React.Component {
           }
         `}
         render={data => {
-          const { title, pathname, colourScheme, children } = this.props
+          const { title, colourScheme, children } = this.props
 
           return (
             <>
@@ -49,11 +48,7 @@ export default class Layout extends React.Component {
               </Helmet>
               <ThemeProvider theme={theme}>
                 <>
-                  <Header
-                    title={title}
-                    pathname={pathname}
-                    colourScheme={colourScheme}
-                  />
+                  <Header title={title} colourScheme={colourScheme} />
                   <Main children={children} />
                   <Footer />
                 </>

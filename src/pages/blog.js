@@ -11,7 +11,7 @@ const BlogList = styled.ul`
 
 export default ({ data }) => {
   return (
-    <Layout pathname="/blog" title="Blog" colourScheme="standard">
+    <Layout title="Blog" colourScheme="standard">
       <BlogList>
         {data.allMarkdownRemark.edges.map(({ post }) => (
           <BlogListItem key={post.id} post={post} />

@@ -5,11 +5,7 @@ import Layout from '../components/Layout'
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <Layout
-        title="Homepage"
-        pathname={this.props.location.pathname}
-        colourScheme="standard"
-      >
+      <Layout title="Homepage" colourScheme="standard">
         <Link to="/blog">Link to blog</Link>
         <br />
         <Link to="/privacy-policy">Link to privacy policy</Link>
