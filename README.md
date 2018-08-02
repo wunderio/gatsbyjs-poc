@@ -28,7 +28,7 @@ Note: Be sure to use `yarn` (not npm) to install any other packages in the futur
 ## Get going!
 
 ```
-gatsby develop
+yarn dev
 ```
 
 Point your browser at `http://localhost:8000` (defaults to port 8000). Hot-reloading and helpful error messages are enabled by default.
@@ -80,7 +80,7 @@ Gatsby v2 is actually quite flexible in terms of how the app is structured. Rega
 `theme.js`, in `src/utils` is where all the 'general' theming takes place that's not specific to any particular component. The file itself is quite well-commented - so read there - but in general it does the following:
 
 - Injects global styles that apply site-wide, including normalize.css, 1rem=10px and 1em=16px, sane box-sizing, and very general font-family/line-height importing and applying.
-- Exports a global 'theme' object. Its values are roughly analogous to global variables and mixins in sass. For example, colours and media queries are defined here. This object can be accessed in any styled component by calling `props.theme`, thanks to the <ThemeProvider /> component (which implements React's 'Context' API under-the-hood).
+- Exports a global 'theme' object. Its values are roughly analogous to global variables and mixins in sass. For example, colours and media queries are defined here. This object can be accessed in any styled component by calling `props.theme`, thanks to the `<ThemeProvider />` component (which implements React's 'Context' API under-the-hood). Note that if a React component that is _not_ a styled component needs to access the theme, this can be achieved by using the `withTheme` higher-order-component, as described [here](https://www.styled-components.com/docs/advanced#getting-the-theme-without-styled-components).
 
 In components themselves, almost every element referenced in JSX is itself a a styled component. Let's take `Title` from `BlogListItem.js` as an example:
 
@@ -104,9 +104,9 @@ const Title = styled.h2`
 
 As described in the 'General App Structure' section, the `templates` folder holds components that describe the layout of a whole page (e.g. `blog-post.js` defines the layout and styling of blog post content). `Layout.js` is special in that it wraps _every_ page, and is loosely similar to `App.js` in `create-react-app`. Here's a quick breakdown of what this component does:
 
-- Manages basic `<head>` data such as title and description using `react-helmet` (this can be overwritten by inserted a more nested Helmet component)
-- Provides a consistent Header and Footer, and passes any children to the `<Main>` component, which provides consistent padding, margin, and max-widths for content (these can be overwritten if required).
-- Wraps everything in a `<ThemeProvider>` component. As described in the section above, this component makes the global object exported in `theme.js` available to every component.
+- Manages basic `<head>` data such as title and description using `react-helmet` (this will be overwritten by any more nested Helmet components)
+- Provides a consistent Header and Footer, and passes any children to the `<Main />` component, which provides consistent padding, margin, and max-widths for content (these can be overwritten if required).
+- Wraps everything in a `<ThemeProvider>` component. As described in the section above, this component makes the global object exported in `theme.js` available from anywhere.
 
 # Overview of key features and findings
 
