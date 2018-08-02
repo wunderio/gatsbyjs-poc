@@ -4,12 +4,6 @@ This project aims to use one or more data sources for content and present them i
 
 # Installation
 
-## Install Gatsby's command line tool
-
-```
-npm install --global gatsby-cli
-```
-
 ## Install yarn
 
 ```
@@ -25,18 +19,94 @@ cd gatsbyjs-poc
 
 ## Install dependencies
 
-`yarn install`
+```
+yarn
+```
+
+Note: Be sure to use `yarn` (not npm) to install any other packages in the future, and commit the `yarn.lock` file to ensure the dependency tree is kept in sync.
 
 ## Get going!
 
-`gatsby develop`
+```
+gatsby develop
+```
 
-Point your browser at `http://localhost:8000` (defaults to port 8000)
+Point your browser at `http://localhost:8000` (defaults to port 8000). Hot-reloading and helpful error messages are enabled by default.
 
 # Resources
 
 - [GraphQL fundamentals](https://www.howtographql.com/basics/0-introduction/)
 - [Gatsby v2 beta plugins](https://next.gatsbyjs.org/plugins/)
+
+# Application Overview
+
+## General App Structure
+
+Here is the general structure of the repo:
+
+```bash
+bash-3.2$ tree -a -L 2 -I 'node_modules|.DS_Store|.git'
+.
+├── .cache                # Gatsby uses this for faster rebuilds
+│   └── [...various files]
+├── .circleci
+│   └── config.yml
+├── .gitignore
+├── .prettierrc
+├── .vscode
+│   └── extensions.json
+├── README.md
+├── gatsby-config.js      # Gatsby plugins and site metadata are declared here
+├── gatsby-node.js        # Any dynamic page generation, webpack config, or similar build-time behaviour is defined here
+├── package.json
+├── public                # This is where Gatsby outputs its built files
+│   └── [...various files]
+├── src
+│   ├── assets            # Assets such as images are here (they're NOT automatically optimised, but check out the plugin 'gatsby-image' for example)
+│   ├── components        # All non-template components are here
+│   ├── data              # This holds local data used in this prototype app; when fetching becomes external only, this can be deleted
+│   ├── pages             # Files here will automatically get their own URL that matches the filename
+│   ├── templates         # React components which serve as page templates are kept here. See `The 'Layout' Component`, below
+│   └── utils             # This holds `theme.js` (check the theming section below); other helper functions should go here if they're needed
+└── yarn.lock             # Remember to commit this when any packages get added/updated
+```
+
+Gatsby v2 is actually quite flexible in terms of how the app is structured. Regarding the `src` folder, only the `pages` folder is a Gatsby default requirement; anything else can be moved around with minor changes to `import` statements, and the contents of `gatsby-config.js` and `gatsby-node.js`. However, this structure seems to work well, so I'd expect the only changes would be to add subfolders where appropriate, as the number of files grows.
+
+## Styled Components
+
+[Styled Components](https://github.com/styled-components/styled-components) is used for theming - it works really well with React components, and Gatsby is no exception.
+
+`theme.js`, in `src/utils` is where all the 'general' theming takes place that's not specific to any particular component. The file itself is quite well-commented - so read there - but in general it does the following:
+
+- Injects global styles that apply site-wide, including normalize.css, 1rem=10px and 1em=16px, sane box-sizing, and very general font-family/line-height importing and applying.
+- Exports a global 'theme' object. Its values are roughly analogous to global variables and mixins in sass. For example, colours and media queries are defined here. This object can be accessed in any styled component by calling `props.theme`, thanks to the <ThemeProvider /> component (which implements React's 'Context' API under-the-hood).
+
+In components themselves, almost every element referenced in JSX is itself a a styled component. Let's take `Title` from `BlogListItem.js` as an example:
+
+```js
+const Title = styled.h2`
+  font-size: 2.2rem;
+  margin: 0;
+  padding: 0;
+  color: ${({ theme }) => theme.colours.navy};
+
+  ${WrappingLink}:hover & {
+    color: ${({ theme }) => theme.colours.cyan};
+  }
+`
+```
+
+- ^ This is an h2, but referenced in the JSX as `<Title />` (this feature makes components' render methods much easier to understand at a glance). It uses the global theme object explained above in order to reference the colours it needs. In styled-components, this is done via an arrow function which receives props, of which `theme` is one of them.
+- This component uses a great feature of styled-components called the [Component Selector pattern](https://www.styled-components.com/docs/advanced#referring-to-other-components). This allows you to refer to other styled components inside a different selector, making things like styling based on an element's parent possible from the component itself. Check [this commit](https://github.com/wunderio/gatsbyjs-poc/commit/e267fef90396451ae8b31a3265064325e1ce3f66) for an example of how this pattern can improve CSS readability.
+
+## The 'Layout' Component
+
+As described in the 'General App Structure' section, the `templates` folder holds components that describe the layout of a whole page (e.g. `blog-post.js` defines the layout and styling of blog post content). `Layout.js` is special in that it wraps _every_ page, and is loosely similar to `App.js` in `create-react-app`. Here's a quick breakdown of what this component does:
+
+- Manages basic `<head>` data such as title and description using `react-helmet` (this can be overwritten by inserted a more nested Helmet component)
+- Provides a consistent Header and Footer, and passes any children to the `<Main>` component, which provides consistent padding, margin, and max-widths for content (these can be overwritten if required).
+- Wraps everything in a `<ThemeProvider>` component. As described in the section above, this component makes the global object exported in `theme.js` available to every component.
 
 # Overview of key features and findings
 
@@ -84,39 +154,8 @@ In general, if you're familiar with React and the surrounding ecosystem (ES6+ et
 
 - As I write this, Gatsby v2 is in beta and the docs are _mostly_ quite good and up-to-date. However, many of the code examples and other resources still reference v1, which is quite different. And there has already been discussions by Kyle Mathews (Gatsby's creator) about v3. So, always be aware which version any examples/tutorials are using.
 - Many packages you might wish to use work great with Gatsby. But, some of them require a plugin to work. In general when you add a package it's worth searching the plugins section of the Gatsby docs, to see if there's one available.
-- Gatsby uses webpack under the hood. I didn't need to modify it, but as a site grows it's pretty much inevitable that this will be required for something or other. Check [here](https://next.gatsbyjs.org/docs/add-custom-webpack-config/) for how to do that - and be aware that there's likely a plugin available for whatever you need to do.
+- Gatsby uses webpack under-the-hood. This can be modified as described [here](https://next.gatsbyjs.org/docs/add-custom-webpack-config/) though be aware that there's often a plugin available for whatever you need to do.
 - You might be used to rendering different components depending on the window width (e.g. a mobile component or a desktop component), if they're sufficiently different and it's cleaner to do so. This works great in something like create-react-app, because the DOM is generated on the client - so it 'knows' which version to mount. With Gatsby, however, it has no way of knowing the client's screen size at build time. So if you take this approach there may be a very brief flash of the 'wrong' component before the 'correct' one gets mounted. Personally I don't think this is a problem but worth mentioning. Solutions: prefer CSS media queries instead, or minimise the issue by defaulting to the most common screen size variant based on analytics data.
-
-### Theming, Styled Components
-
-[Styled Components](https://github.com/styled-components/styled-components) is a great way of theming a React app, and works really well with Gatsby.
-
-`theme.js`, in `src/utils/styles` is where all the 'general' theming takes place that's not specific to any particular component. The file itself is commented quite well - so read there - but in general it does the following:
-
-- Injects global styles that apply site-wide, including normalize.css, 1rem=10px and 1em=16px, sane boxing-sizing, and very general font-family/line-height importing and applying.
-- Exports a global 'theme' object. Its values are analogous to global variables and mixins in sass. For examples, colours and media queries are defined here. This object can be accessed in any styled component by calling `props.theme`, thanks to the <ThemeProvider /> component (which implements React's 'Context' API).
-
-In components themselves, almost every DOM element referenced in JSX is itself a a styled component. Let's take `Title` from `BlogListItem.js` as an example:
-
-```js
-const Title = styled.h2`
-  font-size: 2.2rem;
-  margin: 0;
-  padding: 0;
-  color: ${({ theme }) => theme.colours.navy};
-
-  ${WrappingLink}:hover & {
-    color: ${({ theme }) => theme.colours.cyan};
-  }
-`
-```
-
-- ^ This is an h2, but referenced in the JSX as `<Title />` (this feature makes components' render methods understandable at a glance). It uses the global theme object explained above in order to reference the colours it needs. In styled-components, this is done via an arrow function which receives props, of which `theme` is one of them.
-- This component uses a great feature of styled-components called the [Component Selector pattern](https://www.styled-components.com/docs/advanced#referring-to-other-components). Check [this commit](https://github.com/wunderio/gatsbyjs-poc/commit/e267fef90396451ae8b31a3265064325e1ce3f66) for an example of the problem this pattern solves.
-
-### General App Structure, The 'Layout' Component
-
-- TBC
 
 ## Gatsby and Lando
 
