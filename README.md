@@ -108,6 +108,8 @@ https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront is a go
 
 We recommend using Netlify as you only need to add a few attributes to your form elements for this to work: https://www.netlify.com/docs/form-handling/
 
+Interesting case study regarding forms, comments and Slack notifications: https://jamstack-comments.netlify.com/about/
+
 One alternative for static sites is to use AWS Lambda and AWS Simple Email Service (SES) as per https://medium.com/calyx/serverless-contact-forms-with-aws-lambda-79959cd1a6cd.
 
 Other options include Zapier, FormKeep or 99inbound or even an endpoint defined by Drupal/your backend CMS that can handle the submission. Many options exist.
