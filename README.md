@@ -20,7 +20,7 @@ brew install yarn
 
 ```
 git clone https://github.com/wunderio/gatsbyjs-poc
-cd gatsby-poc
+cd gatsbyjs-poc
 ```
 
 ## Install dependencies
@@ -44,10 +44,10 @@ Point your browser at `http://localhost:8000` (defaults to port 8000)
 
 There are a few options available but broadly can be considered as:
 
-1. Language negotiation: How can we detect the language a user wants
-2. Content translation: How does content get translated and returned to the front-end?
+1.  Language negotiation: How can we detect the language a user wants
+2.  Content translation: How does content get translated and returned to the front-end?
     - Best to delegate content authoring and delivery to the backend CMS. Gatsby/React can ask for what it wants and supply an optional language code derived from the language negotiation process.
-3. Localization (l9n): How does the page adapt (layout or content) based on the locale specified?
+3.  Localization (l9n): How does the page adapt (layout or content) based on the locale specified?
     - https://github.com/angeloocana/gatsby-plugin-i18n can help with this. You'll need to make your React components and layouts aware of language variants and have them adapt accordingly.
 
 ### Other considerations:
@@ -62,10 +62,10 @@ There are a few options available but broadly can be considered as:
 ## Connecting to your data
 
 - Drupal 8
-    - Install `json` and `json_extras` modules.
-    - Install `gatsby-source-drupal` plugin for Gatsby.
+  - Install `json` and `json_extras` modules.
+  - Install `gatsby-source-drupal` plugin for Gatsby.
 - REST / other APIs
-    - Install `gatsby-source-apiserver` and provide it with a URL to the API and state whether data will be saved to a local file or not.
+  - Install `gatsby-source-apiserver` and provide it with a URL to the API and state whether data will be saved to a local file or not.
 
 ## Content editing/publishing workflow
 
@@ -80,7 +80,43 @@ Sites not using Netlify will need to be able to use a service that can respond i
 
 ## Gatsby + React
 
-- Any tips/pointers?
+In general, if you're familiar with React and the surrounding ecosystem (ES6+ etc) then it's not a huge jump to being productive with Gatsby. There are just a few minor things for developers to be aware of:
+
+- As I write this, Gatsby v2 is in beta and the docs are _mostly_ quite good and up-to-date. However, many of the code examples and other resources still reference v1, which is quite different. And there has already been discussions by Kyle Mathews (Gatsby's creator) about v3. So, always be aware which version any examples/tutorials are using.
+- Many packages you might wish to use work great with Gatsby. But, some of them require a plugin to work. In general when you add a package it's worth searching the plugins section of the Gatsby docs, to see if there's one available.
+- Gatsby uses webpack under the hood. I didn't need to modify it, but as a site grows it's pretty much inevitable that this will be required for something or other. Check [here](https://next.gatsbyjs.org/docs/add-custom-webpack-config/) for how to do that - and be aware that there's likely a plugin available for whatever you need to do.
+- You might be used to rendering different components depending on the window width (e.g. a mobile component or a desktop component), if they're sufficiently different and it's cleaner to do so. This works great in something like create-react-app, because the DOM is generated on the client - so it 'knows' which version to mount. With Gatsby, however, it has no way of knowing the client's screen size at build time. So if you take this approach there may be a very brief flash of the 'wrong' component before the 'correct' one gets mounted. Personally I don't think this is a problem but worth mentioning. Solutions: prefer CSS media queries instead, or minimise the issue by defaulting to the most common screen size variant based on analytics data.
+
+### Theming, Styled Components
+
+[Styled Components](https://github.com/styled-components/styled-components) is a great way of theming a React app, and works really well with Gatsby.
+
+`theme.js`, in `src/utils/styles` is where all the 'general' theming takes place that's not specific to any particular component. The file itself is commented quite well - so read there - but in general it does the following:
+
+- Injects global styles that apply site-wide, including normalize.css, 1rem=10px and 1em=16px, sane boxing-sizing, and very general font-family/line-height importing and applying.
+- Exports a global 'theme' object. Its values are analogous to global variables and mixins in sass. For examples, colours and media queries are defined here. This object can be accessed in any styled component by calling `props.theme`, thanks to the <ThemeProvider /> component (which implements React's 'Context' API).
+
+In components themselves, almost every DOM element referenced in JSX is itself a a styled component. Let's take `Title` from `BlogListItem.js` as an example:
+
+```js
+const Title = styled.h2`
+  font-size: 2.2rem;
+  margin: 0;
+  padding: 0;
+  color: ${({ theme }) => theme.colours.navy};
+
+  ${WrappingLink}:hover & {
+    color: ${({ theme }) => theme.colours.cyan};
+  }
+`
+```
+
+- ^ This is an h2, but referenced in the JSX as `<Title />` (this feature makes components' render methods understandable at a glance). It uses the global theme object explained above in order to reference the colours it needs. In styled-components, this is done via an arrow function which receives props, of which `theme` is one of them.
+- This component uses a great feature of styled-components called the [Component Selector pattern](https://www.styled-components.com/docs/advanced#referring-to-other-components). Check [this commit](https://github.com/wunderio/gatsbyjs-poc/commit/e267fef90396451ae8b31a3265064325e1ce3f66) for an example of the problem this pattern solves.
+
+### General App Structure, The 'Layout' Component
+
+- TBC
 
 ## Gatsby and Lando
 
