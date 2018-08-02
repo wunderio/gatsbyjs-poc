@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
-import Layout from 'components/Layout'
+import Layout from 'templates/Layout'
 
 const BlogText = styled.div`
   font-size: 1.8rem;
