@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import { legalLinks } from '../data/data'
-import logo from '../assets/carrot-with-text.svg'
+import { legalLinks } from 'data/data'
+import logo from 'assets/carrot-with-text.svg'
 
 const StyledFooter = styled.footer`
   margin: 0;

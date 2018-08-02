@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import { navLinks } from '../data/data'
-import carrot from '../assets/carrot-white.svg'
-import hamburger from '../assets/hamburger.svg'
-import closeIcon from '../assets/close-icon.svg'
+import { navLinks } from 'data/data'
+import carrot from 'assets/carrot-white.svg'
+import hamburger from 'assets/hamburger.svg'
+import closeIcon from 'assets/close-icon.svg'
 
 const NavWrapper = styled.div``
 

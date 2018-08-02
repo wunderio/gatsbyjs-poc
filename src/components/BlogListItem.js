@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import defaultImg from '../assets/wundercon.jpg'
-import defaultAvatar from '../assets/default-avatar.png'
+import defaultImg from 'assets/wundercon.jpg'
+import defaultAvatar from 'assets/default-avatar.png'
 
 const Post = styled.li`
   margin: 5.5rem 0;

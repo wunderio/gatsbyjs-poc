@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Layout from '../components/Layout'
+import Layout from 'templates/Layout'
 import WeAreHiring from "../components/WeAreHiring";
 
 export default class HomePage extends React.PureComponent {
