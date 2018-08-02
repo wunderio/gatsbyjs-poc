@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import { navLinks } from '../data/data'
-import logo from '../assets/carrot-with-text.svg'
+import { navLinks } from 'data/data'
+import logo from 'assets/carrot-with-text.svg'
 
 const NavWrapper = styled.nav`
   display: flex;

@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import Layout from '../components/Layout'
-import BlogListItem from '../components/BlogListItem'
+import Layout from 'components/Layout'
+import BlogListItem from 'components/BlogListItem'
 
 const BlogList = styled.ul`
   list-style-type: none;
