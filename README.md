@@ -94,7 +94,7 @@ We recommend using Netlify for a number of reasons:
 - It provides DNS management, CDN/security layer and SSL.
 - It makes deployment really, really easy.
 - It is well supported and documented.
-- It integrates well with CI services such as Circle CI.
+- It integrates well with Github and CI services such as Circle CI.
 
 ### Roll your own solution
 
@@ -103,3 +103,11 @@ If Netlify isn't suitable, you need to consider how to cater for things such as 
 A simple site could easily work by compilation happening locally or within Jenkins and the deployment artifact being securely copied to an AWS S3 instance sitting behind Cloudfront or Cloudflare.
 
 https://www.ximedes.com/2018-04-23/deploying-gatsby-on-s3-and-cloudfront is a good example of how a simple site can be run on a serverless Amazon platform where content is generated on a build server, stored in an S3 bucket and served from Cloudfront in tandem with AWS Lambda to handle redirects and set any necessary security headers.
+
+## Forms
+
+We recommend using Netlify as you only need to add a few attributes to your form elements for this to work: https://www.netlify.com/docs/form-handling/
+
+One alternative for static sites is to use AWS Lambda and AWS Simple Email Service (SES) as per https://medium.com/calyx/serverless-contact-forms-with-aws-lambda-79959cd1a6cd.
+
+Other options include Zapier, FormKeep or 99inbound or even an endpoint defined by Drupal/your backend CMS that can handle the submission. Many options exist.
