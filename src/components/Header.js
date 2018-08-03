@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
-import NavbarDesktop from './NavbarDesktop'
-import NavbarMobile from './NavbarMobile'
+import NavbarDesktop from 'components/NavbarDesktop'
+import NavbarMobile from 'components/NavbarMobile'
 
 const HeaderWrapper = styled.header`
   background-color: ${({ theme, colourScheme }) =>

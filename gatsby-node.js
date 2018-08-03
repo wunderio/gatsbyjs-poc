@@ -2,6 +2,16 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const kebabCase = require(`lodash.kebabcase`)
 
+// Allow absolute imports; e.g. `import Header from 'components/Header'`
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    },
+  })
+}
+
+// Middleware to allow dynamic generation of pages
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
@@ -47,6 +57,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
+// Dynamically create pages using the properties that were added in the function above
 exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
