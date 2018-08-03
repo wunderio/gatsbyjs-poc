@@ -8,7 +8,8 @@ export default class Contact extends React.PureComponent {
       <Layout title="Contact Us" colourScheme="standard">
         <h2>Contact Us</h2>
         <h3>Want to talk about your next project?</h3>
-        <form name="contact" id="contact" method="POST" netlify>
+        <form name="contact" id="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <p>
             <input name="first-name" id="first-name" placeholder="First name" />
             <input name="last-name" id="last-name" placeholder="Last name" />
