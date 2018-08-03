@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "gatsby";
-import styled from 'styled-components';
+import styled, { css } from 'styled-components'
 
 const Outer = styled.section`
-  background: ${({ theme }) => theme.colours.red};
   display: flex;
+  background: ${({ theme }) => theme.colours.red};
 `;
 
 const Inner = styled.div`
@@ -13,8 +13,8 @@ const Inner = styled.div`
 `;
 
 const Title = styled.h3`
-  font-size: 2.5rem;
   color: ${({ theme }) => theme.colours.white};
+  font-size: 2.5rem;
 `;
 
 const Body = styled.p`
@@ -22,14 +22,19 @@ const Body = styled.p`
 `;
 
 const ButtonLink = styled(Link)`
-  background: ${({ theme }) => theme.colours.cyan};
-  border-radius: 5.5em;
-  box-shadow: 0 4px 1.25em rgba(0, 0, 0, .2);
-  color: ${({ theme }) => theme.colours.white};
   display: inline-block;
   padding: .5rem 2.5rem;
-  text-decoration: none;
+  border-radius: 5.5em;
+  background: ${({ theme }) => theme.colours.white};
+  color: ${({ theme }) => theme.colours.cyan};
+  box-shadow: 0 4px 1.25em rgba(0, 0, 0, .2);
   font-size: 1.75rem;
+  text-decoration: none;
+  
+  ${props => props.primary && css`
+    background: ${({ theme }) => theme.colours.cyan};
+    color: ${({ theme }) => theme.colours.white};
+  `}
 `;
 
 class WeAreHiring extends React.Component {
@@ -39,9 +44,10 @@ class WeAreHiring extends React.Component {
         <Inner>
           <Title>We are hiring!</Title>
           <Body>We are always on the lookout for new talent. Do the work you’ll be proud of and learn from others around you in a happy working environment.</Body>
-          <ButtonLink to={"/careers"}>Careers</ButtonLink>
+          <ButtonLink primary to={"/careers"}>Careers</ButtonLink>
         </Inner>
         <Inner>
+          {/* @todo make image responsive */}
           <img src={ require("../assets/wundercon.jpg") } alt="" width="600" height="400" />
         </Inner>
       </Outer>
