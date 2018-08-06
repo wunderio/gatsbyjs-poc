@@ -1,6 +1,8 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const kebabCase = require(`lodash.kebabcase`)
+const _ = require(`lodash`)
+var slugify = require('slugify')
 
 // Allow absolute imports; e.g. `import Header from 'components/Header'`
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -84,6 +86,50 @@ exports.createPages = ({ graphql, actions }) => {
             // in page queries as GraphQL variables.
             slug,
             template,
+          },
+        })
+      })
+      resolve()
+    })
+  })
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  return new Promise((resolve, reject) => {
+    graphql(
+      `
+      {
+        allMdbMovies(
+          limit: 4
+          skip: 1
+          sort: {
+            fields: [vote_average]
+            order: DESC
+          }
+        ) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+      }
+      `
+    ).then(result => {
+      if (result.errors) {
+        reject(result.errors)
+      }
+
+      const pageTemplate = path.resolve(`src/templates/Film.js`)
+      _.each(result.data.allMdbMovies.edges, edge => {
+        var newpath = slugify(edge.node.title, {remove: /[$*_+~.()'"!\-:@]/g, lower: true})
+        createPage({
+          path: `/movies/` + newpath,
+          component: path.resolve(pageTemplate),
+          context: {
+            id: edge.node.id,
           },
         })
       })

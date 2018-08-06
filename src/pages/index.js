@@ -9,6 +9,12 @@ export default class HomePage extends React.PureComponent {
       <Layout title="Homepage" colourScheme="standard">
         <Link to="/blog">Link to blog</Link>
         <br />
+        <Link to="/artists">Link to music artists (Drupal)</Link>
+        <br />
+        <Link to="/news">Link to news (RSS)</Link>
+        <br />
+        <Link to="/movies">Link to movies (API)</Link>
+        <br />
         <Link to="/privacy-policy">Link to privacy policy</Link>
         <br />
         <Link to="/copyright">Link to copyright</Link>
