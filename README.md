@@ -2,19 +2,7 @@
 
 This project aims to use one or more data sources for content and present them in a React powered front-end.
 
-# Installation
-
-## Install Gatsby's command line tool
-
-```
-npm install --global gatsby-cli
-```
-
-## Install yarn
-
-```
-brew install yarn
-```
+# Get started
 
 ## Get the source code
 
@@ -23,11 +11,38 @@ git clone https://github.com/wunderio/gatsbyjs-poc
 cd gatsbyjs-poc
 ```
 
-## Install dependencies
+> We encourage the use of Lando to avoid differences in local environment tool versions. This can often slow down the team while troubleshooting individual setups.
+
+## Lando
+
+[Install Lando](https://docs.devwithlando.io/installation/installing.html)
+
+```
+lando start
+lando gatsby serve
+```
+
+Browse to https://gatsby.lndo.site, BOOMSHAKALAKA!!!
+
+### Native tools (not recommended)
+
+#### Install Gatsby's command line tool
+
+```
+npm install --global gatsby-cli
+```
+
+#### Install yarn
+
+```
+brew install yarn
+```
+
+### Install dependencies
 
 `yarn install`
 
-## Get going!
+### Get going!
 
 `gatsby develop`
 

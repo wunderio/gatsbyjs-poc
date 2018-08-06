@@ -1,0 +1,21 @@
+name: gatsby_drupal
+
+services:
+  node:
+    type: node:8.9
+    globals:
+      gatsby-cli: "latest"
+
+tooling:
+  gatsby:
+    service: node
+
+events:
+  post-start:
+    - node: "cd $LANDO_MOUNT && yarn install"
+
+proxy:
+  node:
+    # Gatsby serve usually defaults to port 8000 but for some
+    # reason uses 9000 here.
+    - gatsby.lndo.site:9000
