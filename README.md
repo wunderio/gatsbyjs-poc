@@ -188,3 +188,25 @@ Interesting case study regarding forms, comments and Slack notifications: https:
 One alternative for static sites is to use AWS Lambda and AWS Simple Email Service (SES) as per https://medium.com/calyx/serverless-contact-forms-with-aws-lambda-79959cd1a6cd.
 
 Other options include Zapier, FormKeep or 99inbound or even an endpoint defined by Drupal/your backend CMS that can handle the submission. Many options exist.
+
+## Data Sources
+
+Gatsby can pull in data from multiple sources. This 'data-source' branch includes some examples to introduce you to the different approaches you can take to fetch that data.
+
+### CMS plugins
+
+This branch has an example of Drupal integration, using the [gatsby-source-drupal](https://next.gatsbyjs.org/packages/gatsby-source-drupal/) plugin. At the Drupal end you need 2 modules installed to create a JSON endpoint - [json](https://www.drupal.org/project/jsonapi_extras) and [json_extras](https://www.drupal.org/project/jsonapi_extras). You can then add the plugin to your gatsby-config.js file, stating the site's URL and JSON endpoint path.
+
+An example of this in action can be seen in artists.js, where a GraphQL query fetches information from a Drupal node. This includes an example of a custom field.
+
+There are similar plugins for other CMS products, such as WordPress, Contentful, Prismic, Strapi and DatoCMS.
+
+### External APIs
+
+There is a plugin called [gatsby-source-apiserver](https://next.gatsbyjs.org/packages/gatsby-source-apiserver/) which can be used to fetch content from APIs which don't have dedicated Gatsby plugins. This branch has a basic example using [the Movie DB](https://developers.themoviedb.org/3/getting-started) API. The plugin details are placed in gatsby-config.js which includes your API request path, assigning some relevant names, and deciding whether you want the data to be saved locally or not.
+
+Another approach is to create your own source plugin. This is not as quick to set up as using the gatsby-source-apiserver plugin but gives your more control. Look [here](https://next.gatsbyjs.org/docs/source-plugin-tutorial/) to see a tutorial on how to build one.
+
+### Data plugins
+
+There is another example included in this branch, where data is fetched from an RSS feed. This was done using the [gatsby-source-rss-fork](https://next.gatsbyjs.org/packages/gatsby-source-rss-fork/) plugin (the main RSS plugin wasn't working at time of testing, hence using this forked version). The plugin is added to the gatsby-config.js file with a single option set, the RSS feed URL. The news.js file shows this in action, with a GraphQL query fetching the 4 latest feed items.
