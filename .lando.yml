@@ -1,10 +1,26 @@
 name: gatsby_drupal
+recipe: drupal8
+
+config:
+    webroot: drupal/web
+    via: nginx
+    php: '7.1'
+    database: mariadb:10.1
 
 services:
   node:
     type: node:8.9
     globals:
       gatsby-cli: "latest"
+  mailhog:
+      type: mailhog
+      hogfrom:
+        - appserver
+  appserver:
+    overrides:
+      services:
+        environment:
+          HASH_SALT: notsosecurehash
 
 tooling:
   gatsby:
@@ -13,9 +29,14 @@ tooling:
 events:
   post-start:
     - node: "cd $LANDO_MOUNT && yarn install"
+  # Clear caches after a database import
+  post-db-import:
+    - appserver: cd $LANDO_WEBROOT && drush cr -y
 
 proxy:
   node:
     # Gatsby serve usually defaults to port 8000 but for some
     # reason uses 9000 here.
     - gatsby.lndo.site:9000
+  mailhog:
+    - mail.lndo.site
