@@ -26,7 +26,7 @@ const IntroText = styled.p``
 
 class Header extends React.Component {
   state = {
-    width: 0,
+    width: 9999,
   }
 
   static propTypes = {
