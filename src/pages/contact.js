@@ -30,7 +30,7 @@ export default class Contact extends React.PureComponent {
               name="data-handling-approve"
               id="data-handling-approve"
             />
-            <label for="data-handling-approve" style={{ marginLeft: '2rem' }}>
+            <label htmlFor="data-handling-approve" style={{ marginLeft: '2rem' }}>
               I approve that Wunder processes my personal data according to its{' '}
               <Link to="/privacy-policy" target="_blank">
                 Privacy Policy
