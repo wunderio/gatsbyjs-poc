@@ -6,10 +6,11 @@ class SiteCookieConsent extends React.Component {
   render() {
     return (
       <CookieConsent
-        // Styling options listed at https://github.com/Mastermindzh/react-cookie-consent#props
+        // debug={true} // Uncomment to enable debugging.
         location="bottom"
         buttonText="Close"
         cookieName="siteCookieConsent"
+        // All styling props at https://github.com/Mastermindzh/react-cookie-consent#props
       >
         This website uses cookies to ensure you get the best experience on our website. By continuing to browse the site, you are agreeing to our use of cookies. <Link to="/privacy-policy">Learn more</Link>{" "}
       </CookieConsent>
