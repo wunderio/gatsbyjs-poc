@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import SiteCookieConsent from "./SiteCookieConsent";
+
 
 import { legalLinks } from 'data/data'
 import logo from 'assets/carrot-with-text.svg'
@@ -83,6 +85,7 @@ export default class Footer extends React.Component {
             ))}
           </LegalList>
         </LegalSection>
+        <SiteCookieConsent />
       </StyledFooter>
     )
   }

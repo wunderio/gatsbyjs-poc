@@ -21,6 +21,7 @@
     "lodash.kebabcase": "^4.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
+    "react-cookie-consent": "^1.7.0",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0",
     "styled-components": "^3.3.3",
