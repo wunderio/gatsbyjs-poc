@@ -31,7 +31,7 @@ const ButtonLink = styled(Link)`
   font-size: 1.75rem;
   text-decoration: none;
   
-  ${props => props.primary && css`
+  ${props => props.type === "primary" && css`
     background: ${({ theme }) => theme.colours.cyan};
     color: ${({ theme }) => theme.colours.white};
   `}
@@ -44,7 +44,7 @@ class WeAreHiring extends React.Component {
         <Inner>
           <Title>We are hiring!</Title>
           <Body>We are always on the lookout for new talent. Do the work you’ll be proud of and learn from others around you in a happy working environment.</Body>
-          <ButtonLink primary to={"/careers"}>Careers</ButtonLink>
+          <ButtonLink type="primary" to={"/careers"}>Careers</ButtonLink>
         </Inner>
         <Inner>
           {/* @todo make image responsive */}
