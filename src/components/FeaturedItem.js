@@ -1,0 +1,75 @@
+import React from "react";
+import PropTypes from 'prop-types'
+import { Link } from "gatsby";
+import styled, { css } from 'styled-components'
+
+const Outer = styled.section`
+  display: flex;
+`;
+
+const Inner = styled.div`
+  flex: 50%;
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+`;
+
+const Title = styled.h3`
+  color: ${({ theme }) => theme.colours.white};
+  font-size: 2.5rem;
+`;
+
+const Body = styled.p`
+  color: ${({ theme }) => theme.colours.white};
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+// @todo: Do not duplicate the button styles (WeAreHiring.js applies the same styles)
+const ButtonLink = styled(Link)`
+  display: inline-block;
+  padding: .5rem 2.5rem;
+  border-radius: 5.5em;
+  background: ${({ theme }) => theme.colours.white};
+  color: ${({ theme }) => theme.colours.cyan};
+  box-shadow: 0 4px 1.25em rgba(0, 0, 0, .2);
+  font-size: 1.75rem;
+  text-decoration: none;
+  
+  ${props => props.type === "primary" && css`
+    background: ${({ theme }) => theme.colours.cyan};
+    color: ${({ theme }) => theme.colours.white};
+  `}
+`;
+
+export default class FeaturedItem extends React.Component {
+
+  static propTypes = {
+    bg: PropTypes.oneOf([
+      'red', 'blue', 'white'
+    ]),
+    title: PropTypes.string,
+    body: PropTypes.string,
+    link_url: PropTypes.string,
+    img_path: PropTypes.string,
+  }
+
+  render() {
+
+    const { bg, title, body, link_url, img_path } = this.props
+
+    return (
+      <Outer style={{background: bg}}>
+        <Inner>
+          <Img src={ require("../assets/" + img_path) } alt="" />
+        </Inner>
+        <Inner>
+          <Title>{title}</Title>
+          <Body>{body}</Body>
+          <ButtonLink type="primary" to={link_url}>See details</ButtonLink>
+        </Inner>
+      </Outer>
+    )
+  }
+}
