@@ -41,6 +41,9 @@ const NavLinks = styled.ul`
     letter-spacing: 0.36rem;
     white-space: nowrap;
 
+    &.active {
+      color: ${({ theme }) => theme.colours.cyan}; 
+    }
     :hover {
       background-color: white;
       color: ${({ theme }) => theme.colours.cyan};
@@ -58,7 +61,7 @@ export default class NavbarDesktop extends React.Component {
         <NavLinks>
           {Object.keys(navLinks).map(key => (
             <li key={key}>
-              <Link to={navLinks[key].link} key={key}>
+              <Link activeClassName="active" to={navLinks[key].link} key={key}>
                 {navLinks[key].text}
               </Link>
             </li>
