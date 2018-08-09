@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "gatsby";
-import styled, { css } from 'styled-components'
-import ButtonLink from "./ButtonLink";
+import styled from 'styled-components'
+import ButtonLink from "./ButtonLink"
 
 const Outer = styled.section`
   display: flex;
