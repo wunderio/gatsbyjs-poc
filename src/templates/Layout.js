@@ -15,6 +15,7 @@ export default class Layout extends React.Component {
     introText: PropTypes.string,
     theme: PropTypes.string,
     children: PropTypes.node.isRequired,
+    section: PropTypes.string,
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class Layout extends React.Component {
           }
         `}
         render={data => {
-          const { title, introText, colourScheme, children } = this.props
+          const { title, introText, colourScheme, children, section } = this.props
 
           return (
             <>
@@ -49,7 +50,7 @@ export default class Layout extends React.Component {
               </Helmet>
               <ThemeProvider theme={theme}>
                 <>
-                  <Header title={title} introText={introText} colourScheme={colourScheme} />
+                  <Header section={section} title={title} introText={introText} colourScheme={colourScheme} />
                   <Main children={children} />
                   <Footer />
                 </>

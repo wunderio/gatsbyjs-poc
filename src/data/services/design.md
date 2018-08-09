@@ -1,7 +1,10 @@
 ---
 slug: "design"
 title: "Data, Design and Agile Development"
+subtitle: "If you want to evolve your online presence, Wunder is where user research, service design, and super smart development come together."
 excerpt: "If you’re looking to evolve your online services, Wunder is where user research, data-driven decision making, service design, and super smart development come together."
+intro_1: "At Wunder, we conduct user research and apply insights from data analytics to produce modern visual design and smart technical solutions."
+intro_2: "We deliver this with agile methods and collaborative ways of working and create regular milestones to validate our thinking and help us plan future improvements."
 image: "services/services-pad.png"
 ---
 
