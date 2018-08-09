@@ -8,12 +8,9 @@ export default class Contact extends React.PureComponent {
     // @todo: Pull the featured items content programmatically from services content
     // @todo: need to first figure out how to control the order and only print certain content instead of everything.
 
+    const subtitle = "Wunder is a full service digital agency, and one of Europe's largest Drupal agencies, with 140+ specialists across 5 countries. We deliver digital solutions designed to achieve our clients' goals and fulfil the needs of their customers/users";
     return (
-      <Layout title="Services" colourScheme="standard">
-        <p>Wunder is a full service digital agency, and one of Europe's largest
-          Drupal agencies, with 140+ specialists across 5 countries. We deliver
-          digital solutions designed to achieve our clients' goals and fulfil
-          the needs of their customers/users</p>
+      <Layout title="Services" introText={subtitle} colourScheme="standard">
 
         <FeaturedItem
           bg="white"
