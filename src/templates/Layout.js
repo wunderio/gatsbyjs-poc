@@ -36,7 +36,7 @@ export default class Layout extends React.Component {
 
           return (
             <>
-              <Helmet>
+              <Helmet bodyAttributes={{ class: 'section-' + section }}>
                 <title>
                   {title
                     ? `${title} - ${data.site.siteMetadata.title}`

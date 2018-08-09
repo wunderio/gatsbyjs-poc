@@ -16,9 +16,10 @@ const Hero = styled.div`
   align-items: center;
   text-align: center;
 
-  padding-bottom: 100px;
-  margin-bottom: -100px;
- 
+  .section-services & {
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+  }
 `
 
 const Title = styled.h1`
@@ -29,7 +30,7 @@ const Title = styled.h1`
   letter-spacing: .05em;
   max-width: 1200px;
   color: ${({ theme }) => theme.colours.red};
-  
+
   &:after {
     content: "";
     background-color: #fff;
@@ -86,7 +87,7 @@ class Header extends React.Component {
         ) : (
           <NavbarDesktop colourScheme={colourScheme} />
         )}
-        {title && (
+        {title && section !== 'home' && (
           <Hero section={section}>
             <Title>{title}</Title>
             <IntroText>{introText}</IntroText>

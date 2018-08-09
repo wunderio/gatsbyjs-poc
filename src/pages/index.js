@@ -6,7 +6,7 @@ import WeAreHiring from "../components/WeAreHiring";
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <Layout title="Homepage" colourScheme="standard">
+      <Layout title="Homepage" colourScheme="standard" section="home">
         <Link to="/blog">Link to blog</Link>
         <br />
         <Link to="/services">Link to services</Link>
