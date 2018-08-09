@@ -54,7 +54,7 @@ const Img = styled.img`
   height: auto;
 `;
 
-// @todo: Do not duplicate the button styles (WeAreHiring.js applies the same styles)
+// @todo: Do not duplicate the button styles (./WeAreHiring.js applies same styling)
 const ButtonLink = styled(Link)`
   display: inline-block;
   padding: .5rem 2.5rem;

@@ -21,6 +21,7 @@ const Body = styled.p`
   color: ${({ theme }) => theme.colours.white};
 `;
 
+// @todo: Do not duplicate the button styles (FeaturedItems.js applies same styling)
 const ButtonLink = styled(Link)`
   display: inline-block;
   padding: .5rem 2.5rem;
