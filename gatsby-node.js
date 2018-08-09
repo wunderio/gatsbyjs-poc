@@ -35,6 +35,27 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       })
     }
 
+    /* All service pages */
+    if (fileNode.relativePath.includes('services')) {
+      // const slug = `/services/${kebabCase(node.frontmatter.slug)}`
+      const slug = `services` + createFilePath({
+        node,
+        getNode,
+        basePath: `data/services`,
+        trailingSlash: false,
+      })
+      createNodeField({
+        node,
+        name: `slug`,
+        value: slug,
+      })
+      createNodeField({
+        node,
+        name: `template`,
+        value: `Services`,
+      })
+    }
+
     /* All generic pages */
     if (fileNode.relativePath.includes('pages')) {
       const slug = createFilePath({
