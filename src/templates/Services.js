@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Layout from 'templates/Layout'
+import ButtonLink from '../components/ButtonLink'
 
 const Intro = styled.div`
   display: flex;
@@ -70,7 +71,7 @@ export default ({ data }) => {
         <Img src={ require("../assets/" + content.frontmatter.image) } alt="" />
       </Intro>
       <Content dangerouslySetInnerHTML={{ __html: content.html }} />
-      <Link to="/services">Back to services lander</Link>
+      <ButtonLink type="primary" to="/services" text="Back to services" />
     </Layout>
   )
 }

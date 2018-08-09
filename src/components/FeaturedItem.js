@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types'
 import { Link } from "gatsby";
 import styled, { css } from 'styled-components'
+import ButtonLink from "./ButtonLink"
 
 const Outer = styled.section`
   display: flex;
@@ -24,7 +25,7 @@ const Outer = styled.section`
   ${props => props.background === "red" && css`
     background: ${({ theme }) => theme.colours.red}
   `}
-  
+
   ${props => props.background === "white" && css`
     background: ${({ theme }) => theme.colours.white};
     color: ${({ theme }) => theme.colours.purpleDark};
@@ -43,7 +44,6 @@ const Inner = styled.div`
   ${props => props.align_content === "left" && css`
     padding: 0 1.5em 0 5em;
   `}
-  
 `;
 
 const Body = styled.p``;
@@ -52,23 +52,6 @@ const Body = styled.p``;
 const Img = styled.img`
   width: 100%;
   height: auto;
-`;
-
-// @todo: Do not duplicate the button styles (./WeAreHiring.js applies same styling)
-const ButtonLink = styled(Link)`
-  display: inline-block;
-  padding: .5rem 2.5rem;
-  border-radius: 5.5em;
-  background: ${({ theme }) => theme.colours.white};
-  color: ${({ theme }) => theme.colours.cyan};
-  box-shadow: 0 4px 1.25em rgba(0, 0, 0, .2);
-  font-size: 1.75rem;
-  text-decoration: none;
-  
-  ${props => props.type === "primary" && css`
-    background: ${({ theme }) => theme.colours.cyan};
-    color: ${({ theme }) => theme.colours.white};
-  `}
 `;
 
 export default class FeaturedItem extends React.Component {
@@ -85,9 +68,7 @@ export default class FeaturedItem extends React.Component {
   }
 
   render() {
-
     const { align_content, bg, title, body, link_url, img_path } = this.props
-
     return (
       <Outer background={bg} align_content={align_content}>
         <Inner content="image">
@@ -96,7 +77,7 @@ export default class FeaturedItem extends React.Component {
         <Inner content="copy" align_content={align_content}>
           <Title>{title}</Title>
           <Body>{body}</Body>
-          <ButtonLink type="primary" to={link_url}>See details</ButtonLink>
+          <ButtonLink type="primary" to={link_url} text="See details" />
         </Inner>
       </Outer>
     )
