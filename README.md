@@ -2,13 +2,7 @@
 
 This project aims to use one or more data sources for content and present them in a React powered front-end.
 
-# Installation
-
-## Install yarn
-
-```
-brew install yarn
-```
+# Get started
 
 ## Get the source code
 
@@ -17,7 +11,46 @@ git clone https://github.com/wunderio/gatsbyjs-poc
 cd gatsbyjs-poc
 ```
 
-## Install dependencies
+> We encourage the use of Lando to avoid differences in local environment tool versions. This can often slow down the team while troubleshooting individual setups.
+
+## Lando
+
+Lando lets you define and run all services connected to a project together. See the `.lando.yml` file in the root of this repo for details.
+
+[Install Lando](https://docs.devwithlando.io/installation/installing.html)
+
+```
+lando start
+lando gatsby serve
+```
+
+Traefik is an HTTP proxy that allows easy access to the services running inside various docker containers. You should be able to see the hostnames inside `.lando.yml` but here are some to try:
+
+- Gatsby: https://gatsby.lndo.site
+- Drupal 8: https://gatsbydrupal.lndo.site/
+- Mailhog: http://mail.lndo.site/
+
+BOOMSHAKALAKA!!!
+
+### Caveats
+
+- `lando gatsby develop` will compile the site and spin up a web server, but this currently doesn't seem to proxy back to Traefik meaning you get a 'Bad gateway' error. `lando gatsby serve` will work, but you currently won't have hot reload support so would need to recompile each time you want to see a change. You can work around this by looking at the native option below, which will work until a solution to this can be found.
+
+### Native tools
+
+#### Install yarn
+
+```
+brew install yarn
+```
+
+#### Install Gatsby's command line tool
+
+```
+yarn global add gatsby-cli
+```
+
+### Install dependencies
 
 ```
 yarn
@@ -25,7 +58,7 @@ yarn
 
 Note: Be sure to use `yarn` (not npm) to install any other packages in the future, and commit the `yarn.lock` file to ensure the dependency tree is kept in sync.
 
-## Get going!
+### Get going!
 
 ```
 yarn dev
