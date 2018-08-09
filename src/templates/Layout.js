@@ -12,6 +12,7 @@ import Footer from 'components/Footer'
 export default class Layout extends React.Component {
   static propTypes = {
     title: PropTypes.string,
+    introText: PropTypes.string,
     theme: PropTypes.string,
     children: PropTypes.node.isRequired,
   }
@@ -30,7 +31,7 @@ export default class Layout extends React.Component {
           }
         `}
         render={data => {
-          const { title, colourScheme, children } = this.props
+          const { title, introText, colourScheme, children } = this.props
 
           return (
             <>
@@ -48,7 +49,7 @@ export default class Layout extends React.Component {
               </Helmet>
               <ThemeProvider theme={theme}>
                 <>
-                  <Header title={title} colourScheme={colourScheme} />
+                  <Header title={title} introText={introText} colourScheme={colourScheme} />
                   <Main children={children} />
                   <Footer />
                 </>
