@@ -1,20 +1,29 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
 import Layout from 'templates/Layout'
+import ButtonLink from '../components/ButtonLink'
 
-const Excerpt = styled.div`
+const Intro = styled.div`
   display: flex;
   padding: 3em 3em 0 3em;
   color: ${({ theme }) => theme.colours.white};
   background-color: ${({ theme }) => theme.colours.red};
 `
 
-const ExcerptCopy = styled.div`
+const IntroCopy = styled.div`
   flex: 60%;
   font-size: 2rem;
-  margin-top: 2rem;
+`
+
+const IntroCopy1 = styled.p`
+  font-size: 1.25em;
+  margin-top: 0;
+`
+
+const IntroCopy2 = styled.p`
+  font-size: 0.85em;
+  margin-bottom: 2em;
 `
 
 const Img = styled.img`
@@ -42,10 +51,6 @@ const Content = styled.article`
     font-size: 2.52rem;
   }
 
-  li {
-    margin: 2rem 0;
-  }
-
   // @todo: set base font sizes somewhere else.
   p {
     font-size: 1.8rem;
@@ -56,13 +61,16 @@ const Content = styled.article`
 export default ({ data }) => {
   const content = data.markdownRemark
   return (
-    <Layout title={content.frontmatter.title} colourScheme="standard">
-      <Excerpt>
-        <ExcerptCopy>{content.frontmatter.excerpt}</ExcerptCopy>
+    <Layout title={content.frontmatter.title} introText={content.frontmatter.subtitle} colourScheme="standard" section="services">
+      <Intro>
+        <IntroCopy>
+          <IntroCopy1>{content.frontmatter.intro_1}</IntroCopy1>
+          <IntroCopy2>{content.frontmatter.intro_2}</IntroCopy2>
+        </IntroCopy>
         <Img src={ require("../assets/" + content.frontmatter.image) } alt="" />
-      </Excerpt>
+      </Intro>
       <Content dangerouslySetInnerHTML={{ __html: content.html }} />
-      <Link to="/services">Back to services lander</Link>
+      <ButtonLink type="primary" to="/services" text="Back to services" />
     </Layout>
   )
 }
@@ -73,8 +81,11 @@ export const query = graphql`
       html
       frontmatter {
         title
+        subtitle
         excerpt
         image
+        intro_1
+        intro_2
       }
     }
   }

@@ -12,8 +12,10 @@ import Footer from 'components/Footer'
 export default class Layout extends React.Component {
   static propTypes = {
     title: PropTypes.string,
+    introText: PropTypes.string,
     theme: PropTypes.string,
     children: PropTypes.node.isRequired,
+    section: PropTypes.string,
   }
 
   render() {
@@ -30,11 +32,11 @@ export default class Layout extends React.Component {
           }
         `}
         render={data => {
-          const { title, colourScheme, children } = this.props
+          const { title, introText, colourScheme, children, section } = this.props
 
           return (
             <>
-              <Helmet>
+              <Helmet bodyAttributes={{ class: 'section-' + section }}>
                 <title>
                   {title
                     ? `${title} - ${data.site.siteMetadata.title}`
@@ -48,7 +50,7 @@ export default class Layout extends React.Component {
               </Helmet>
               <ThemeProvider theme={theme}>
                 <>
-                  <Header title={title} colourScheme={colourScheme} />
+                  <Header section={section} title={title} introText={introText} colourScheme={colourScheme} />
                   <Main children={children} />
                   <Footer />
                 </>

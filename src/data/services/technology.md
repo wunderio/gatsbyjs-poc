@@ -1,8 +1,11 @@
 ---
 slug: "technology"
 title: "Our Technology Approach"
+subtitle: "Our knowledge of Drupal and peripheral open-source technologies gives us the power to constantly find new potential in everyday technology."
 excerpt: "Our knowledge of Drupal and peripheral open-source technologies gives us the power to constantly find new potential in everyday technology."
 image: "services/wunder-drupal.png"
+intro_1: ""
+intro_2: ""
 ---
 
 ### Getting to know your customer

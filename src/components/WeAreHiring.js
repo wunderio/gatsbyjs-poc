@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "gatsby";
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import ButtonLink from "./ButtonLink"
 
 const Outer = styled.section`
   display: flex;
@@ -21,23 +21,6 @@ const Body = styled.p`
   color: ${({ theme }) => theme.colours.white};
 `;
 
-// @todo: Do not duplicate the button styles (FeaturedItems.js applies same styling)
-const ButtonLink = styled(Link)`
-  display: inline-block;
-  padding: .5rem 2.5rem;
-  border-radius: 5.5em;
-  background: ${({ theme }) => theme.colours.white};
-  color: ${({ theme }) => theme.colours.cyan};
-  box-shadow: 0 4px 1.25em rgba(0, 0, 0, .2);
-  font-size: 1.75rem;
-  text-decoration: none;
-  
-  ${props => props.type === "primary" && css`
-    background: ${({ theme }) => theme.colours.cyan};
-    color: ${({ theme }) => theme.colours.white};
-  `}
-`;
-
 class WeAreHiring extends React.Component {
   render() {
     return (
@@ -45,7 +28,7 @@ class WeAreHiring extends React.Component {
         <Inner>
           <Title>We are hiring!</Title>
           <Body>We are always on the lookout for new talent. Do the work you’ll be proud of and learn from others around you in a happy working environment.</Body>
-          <ButtonLink type="primary" to={"/careers"}>Careers</ButtonLink>
+          <ButtonLink type="primary" to="/careers" text="Careers" />
         </Inner>
         <Inner>
           {/* @todo make image responsive */}
