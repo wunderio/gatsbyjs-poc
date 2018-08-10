@@ -14,5 +14,12 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    {
+      resolve: "gatsby-source-openweathermap",
+      options: {
+        appid: "bea227324c9356d4798648b55de46127",
+        q: "London,uk",
+      },
+    },
   ],
 }
